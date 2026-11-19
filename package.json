@@ -1,0 +1,17 @@
+{
+  "name": "rewater-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Прототип управления промышленными водными потоками: оптимизация, сценарии и экономика.",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "start": "node serve.mjs",
+    "test": "node --test test-model.mjs",
+    "check": "node --check dist/model.mjs && node --check dist/app.mjs",
+    "build": "node build-offline.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

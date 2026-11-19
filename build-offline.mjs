@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = path.dirname(fileURLToPath(import.meta.url));
+let html = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
+const css = fs.readFileSync(path.join(root, 'dist/styles.css'), 'utf8');
+const model = fs.readFileSync(path.join(root, 'dist/model.mjs'), 'utf8').replace(/^export /gm, '');
+const app = fs.readFileSync(path.join(root, 'dist/app.mjs'), 'utf8').replace(/^import .*?;\r?\n/, '');
+html = html.replace('<link rel="stylesheet" href="./styles.css">', () => '<style>' + css + '</style>');
+html = html.replace('<script type="module" src="./app.mjs"></script>', () => '<script type="module">' + model + '\n' + app + '</script>');
+const output = path.join(root, 'standalone');
+fs.mkdirSync(output, { recursive: true });
+fs.writeFileSync(path.join(output, 'index.html'), html);
+console.log('Offline demo created: standalone/index.html');

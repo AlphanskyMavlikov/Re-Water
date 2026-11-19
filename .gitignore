@@ -1,0 +1,11 @@
+node_modules/
+standalone/
+.openai/
+.sites-runtime/
+.sites-checkout*/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
